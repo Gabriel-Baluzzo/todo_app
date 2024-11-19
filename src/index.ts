@@ -22,21 +22,19 @@ const tarea3 = gestor.crearTarea(Categoria.TRABAJO)
 gestor.agregarTarea(tarea3)
 
 tarea1.editarTarea({ prioridad: Prioridad.ALTA,progreso:100,tiempoDedicado:3 })
-tarea1.editarTarea({ titulo:"zalala" })
-tarea2.editarTarea({ prioridad: Prioridad.BAJA, tiempoDedicado:1 })
-tarea3.editarTarea({ prioridad: Prioridad.MEDIA, tiempoDedicado:2 })
+// tarea1.editarTarea({ titulo:"zalala" })
+// tarea2.editarTarea({ prioridad: Prioridad.BAJA, tiempoDedicado:1 })
+// tarea3.editarTarea({ prioridad: Prioridad.MEDIA, tiempoDedicado:2 })
 
-//console.log(tarea1.getProgreso(), tarea1.getEstado())
-console.log(tarea1.getId(), tarea2.getId(), tarea3.getId())
-//console.log(gestor.obtenerEstadisticas(estadistica))
-//console.log("Antes de ordenar:");
-//console.log(gestor);
+console.log(tarea1.getProgreso(), tarea1.getEstado())
+// console.log(tarea1.getId(), tarea2.getId(), tarea3.getId())
+// console.log(gestor.obtenerEstadisticas(estadistica))
+// console.log("Antes de ordenar:");
+// console.log(gestor);
 // gestor.ordenarTarea(ordenar);
 // console.log(gestor);
 
-
-//console.log(gestor.buscarTarea(buscarTitulo, {fecha: new Date(2015-10)}))
-//console.log(gestor.buscarTarea(buscador, {fecha: new Date(2025-12)}))
+// console.log(gestor.buscarTarea(buscador, {fecha: new Date(2025-12)}))
 
 
 

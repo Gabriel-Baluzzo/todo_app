@@ -1,0 +1,28 @@
+@startuml Ejecucion del gestor.
+actor Usuario
+participant GestorTarea
+participant Tarea
+participant Categoria
+participant Estadistica
+participant AlgoritmoOrdenamiento
+participant BuscadorSetter
+
+Usuario -> GestorTarea: crearTarea(categoria: Categoria)
+GestorTarea -> Categoria: Crear instancia
+GestorTarea --> Tarea: return nueva Tarea
+
+Usuario -> GestorTarea: agregarTarea(t: Tarea)
+GestorTarea -> GestorTarea: tarea.push(t)
+
+Usuario -> GestorTarea: obtenerEstadisticas(e: Estadistica)
+GestorTarea -> Estadistica: calcularEstadisticas(tarea)
+Estadistica --> GestorTarea: EstadisticaReturn
+
+Usuario -> GestorTarea: ordenarTarea(a: AlgoritmoOrdenamiento)
+GestorTarea -> AlgoritmoOrdenamiento: ordenar(tarea)
+
+Usuario -> GestorTarea: buscarTarea(a: BuscadorSetter, param: BuscadorParam)
+GestorTarea -> BuscadorSetter: busqueda(tarea, param)
+BuscadorSetter --> GestorTarea: Tarea[]
+
+@enduml

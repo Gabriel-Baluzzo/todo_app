@@ -1,0 +1,26 @@
+@startuml Ejecucion de estadistica.
+participant GestorTarea
+participant Estadistica
+participant Tarea
+participant AlgoritmoTasaFinalizacion
+participant AlgoritmoTiempoPromedio
+
+GestorTarea -> Estadistica: calcularEstadisticas(t: Array<Tarea>)
+Estadistica -> Estadistica: listadoTareasCompletas(t)
+Estadistica -> Tarea: getEstado()
+Tarea --> Estadistica: EstadoTarea.COMPLETADA
+Estadistica -> Estadistica: return tareasCompletadas
+
+Estadistica -> Estadistica: listadoTareasPendientes(t)
+Estadistica -> Tarea: getEstado()
+Tarea --> Estadistica: EstadoTarea.PENDIENTE
+Estadistica -> Estadistica: return tareasPendientes
+
+Estadistica -> AlgoritmoTasaFinalizacion: calcularTasaFinalizacion(t, this)
+AlgoritmoTasaFinalizacion --> Estadistica: tasaFinalizacion
+
+Estadistica -> AlgoritmoTiempoPromedio: calcularTiempoPromedio(t)
+AlgoritmoTiempoPromedio --> Estadistica: tiempoPromedio
+
+Estadistica --> GestorTarea: EstadisticaReturn
+@enduml
