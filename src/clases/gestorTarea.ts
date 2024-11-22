@@ -5,7 +5,11 @@ import { AlgoritmoOrdenamiento } from "../interfaces/ordenar";
 import { BuscadorSetter } from "./buscadorSetter";
 import { Estadistica } from "./estadistica";
 import { Tarea } from "./tarea";
-
+/**
+ * el gestor de tareas es el encargado de crear el array de tareas y tambien el de poder agreguar mas tareas o eliminarlas del array una vez terminadas.
+ * 
+ * ademas tiene los metodos para poder buscar u ordenar las tareas segun lo pida el usario.
+ */
 export class GestorTarea {
     private tarea:Array<Tarea>;
 
