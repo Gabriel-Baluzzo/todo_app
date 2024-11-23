@@ -1,7 +1,9 @@
 import { AlgoritmoTasaFinalizacion } from "../interfaces/algoritmoTasaFinalizacion";
 import { Estadistica } from "./estadistica";
 import { Tarea } from "./tarea";
-
+/**
+ * esta clase se encarga de indicar el porcentaje de tareas completadas del usario.
+ */
 export class TasaFinalizacion implements AlgoritmoTasaFinalizacion {
     public calcularTasaFinalizacion(t: Array<Tarea>, e:Estadistica): number {
         const tareasCompletas = e.listadoTareasCompletas(t).length;
