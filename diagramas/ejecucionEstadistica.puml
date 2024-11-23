@@ -6,21 +6,32 @@ participant AlgoritmoTasaFinalizacion
 participant AlgoritmoTiempoPromedio
 
 GestorTarea -> Estadistica: calcularEstadisticas(t: Array<Tarea>)
+activate Estadistica
 Estadistica -> Estadistica: listadoTareasCompletas(t)
 Estadistica -> Tarea: getEstado()
+activate Tarea
 Tarea --> Estadistica: EstadoTarea.COMPLETADA
+deactivate Tarea
 Estadistica -> Estadistica: return tareasCompletadas
+
 
 Estadistica -> Estadistica: listadoTareasPendientes(t)
 Estadistica -> Tarea: getEstado()
+activate Tarea
 Tarea --> Estadistica: EstadoTarea.PENDIENTE
+deactivate Tarea
 Estadistica -> Estadistica: return tareasPendientes
 
 Estadistica -> AlgoritmoTasaFinalizacion: calcularTasaFinalizacion(t, this)
+activate AlgoritmoTasaFinalizacion
 AlgoritmoTasaFinalizacion --> Estadistica: tasaFinalizacion
+deactivate AlgoritmoTasaFinalizacion
 
 Estadistica -> AlgoritmoTiempoPromedio: calcularTiempoPromedio(t)
+activate AlgoritmoTiempoPromedio
 AlgoritmoTiempoPromedio --> Estadistica: tiempoPromedio
+deactivate AlgoritmoTiempoPromedio
 
 Estadistica --> GestorTarea: EstadisticaReturn
+deactivate Estadistica
 @enduml
