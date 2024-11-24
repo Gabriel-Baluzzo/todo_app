@@ -1,9 +1,15 @@
 import { AlgoritmoTiempoPromedio } from "../interfaces/algoritmoTiempoPromedio";
 import { Tarea } from "./tarea";
 /**
- * esta clase calcula un tiempo promedio que tardo el usario en realziar todas tus tareas.
+ * Esta clase calcula el tiempo promedio que el usuario ha tardado en realizar todas sus tareas.
+ * Implementa el algoritmo para obtener el tiempo medio basado en la suma del tiempo dedicado a todas las tareas.
  */
-export class TiempoPromedio implements AlgoritmoTiempoPromedio {  
+export class TiempoPromedio implements AlgoritmoTiempoPromedio {
+    /**
+    * Calcula el tiempo promedio que el usuario ha dedicado a sus tareas.
+    * @param t Arreglo de tareas que se van a evaluar.
+    * @returns {number} El tiempo promedio dedicado a las tareas, en la misma unidad que `getTiempoDedicado`.
+    */  
     public calcularTiempoPromedio(t: Array<Tarea>): number {
         const tiempoTotal = t.reduce((total, tarea) => total + tarea.getTiempoDedicado(), 0);
         const totalTareas = t.length;

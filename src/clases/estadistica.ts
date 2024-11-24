@@ -4,8 +4,9 @@ import { AlgoritmoTiempoPromedio } from "../interfaces/algoritmoTiempoPromedio";
 import { EstadisticaReturn } from "../interfaces/estadisticaRetorno";
 import { Tarea } from "./tarea";
 /**
- * con esta clase nos encargamos de poder saber el porcentaje de tareas completadas,incompletas y el tiempo promedio que se tardo en hacer
- * 
+ * La clase `Estadistica` se encarga de calcular estadísticas relacionadas con las tareas,
+ * como la tasa de finalización, el tiempo promedio de completado, y la clasificación de tareas
+ * en completadas y pendientes.
  */
 export class Estadistica {
     private tareasCompletadas:Array<Tarea>;
@@ -14,7 +15,11 @@ export class Estadistica {
     private tasaFinalizacion:number;
     private promedioHelper:AlgoritmoTiempoPromedio;
     private finalizacionHelper:AlgoritmoTasaFinalizacion;
-
+    /**
+    * Constructor de la clase `Estadistica`.
+    * @param f Algoritmo para calcular la tasa de finalización de tareas.
+    * @param p Algoritmo para calcular el tiempo promedio dedicado a las tareas.
+    */
     constructor(f: AlgoritmoTasaFinalizacion, p: AlgoritmoTiempoPromedio) {
         this.tareasCompletadas=[];
         this.tareasPendientes=[];
@@ -23,11 +28,15 @@ export class Estadistica {
         this.promedioHelper=p;
         this.finalizacionHelper=f;
     }
-/**
- * esta funcion sirve para poder calcular la estadistica del progreso del usario respeto a las tareas
- * @param t esto seria el array que recorrer para verificar su estado de completacion
- * @returns lo que devuelve seria la una interfaz con los datos ya analizados del estado de las tareas del usario.
- */
+    /**
+    * Calcula las estadísticas de las tareas, incluyendo:
+    * - Listado de tareas completadas.
+    * - Listado de tareas pendientes.
+    * - Tasa de finalización (% de tareas completadas).
+    * - Tiempo promedio dedicado a las tareas.
+    * @param t Arreglo de tareas del usuario.
+    * @returns {EstadisticaReturn} Un objeto con las estadísticas calculadas.
+    */
     public calcularEstadisticas(t: Array<Tarea>):EstadisticaReturn {
         this.tareasCompletadas = this.listadoTareasCompletas(t);
         this.tareasPendientes = this.listadoTareasPendientes(t);
@@ -40,12 +49,20 @@ export class Estadistica {
             tasaFinalizacion: this.tasaFinalizacion,
         }; 
     }
-
+    /**
+    * Filtra las tareas que están en estado COMPLETADA.
+    * @param t Arreglo de tareas del usuario.
+    * @returns {Array<Tarea>} Un arreglo con las tareas completadas.
+    */
     public listadoTareasCompletas(t:Array<Tarea>):Array<Tarea>{
         this.tareasCompletadas = t.filter(t => t.getEstado() === EstadoTarea.COMPLETADA);
         return this.tareasCompletadas;
     }
-
+    /**
+    * Filtra las tareas que están en estado PENDIENTE.
+    * @param t Arreglo de tareas del usuario.
+    * @returns {Array<Tarea>} Un arreglo con las tareas pendientes.
+    */
     public listadoTareasPendientes(t: Array<Tarea>): Array<Tarea> {
         this.tareasPendientes = t.filter(t => t.getEstado() === EstadoTarea.PENDIENTE);
         return this.tareasPendientes;
