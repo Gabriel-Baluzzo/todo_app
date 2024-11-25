@@ -45,11 +45,11 @@ describe("Persistencia", () => {
         });
     });
 
-    it("debería ser una instancia de Persistencia", () => {
+    it("Debe ser instancia de Persistencia", () => {
         expect(persistidor).toBeInstanceOf(Persistencia);
     });
 
-    it("debería tener un método salvarTarea()", () => {
+    it("Debe poder salvar las tareas en el archivo JSON", () => {
         persistidor.salvarTarea(tarea);
 
         expect(mockOpen).toHaveBeenCalledWith(path.resolve("tareas.json"), "a");
@@ -57,11 +57,12 @@ describe("Persistencia", () => {
         expect(mockClose).toHaveBeenCalled();
     });
 
-    it("debería cargar las tareas desde el archivo", async () => {
+    it("Debe poder cargar las tareas del archivo JSON", async () => {
         gestorTarea = await persistidor.cargarTareas();
         expect(mockOpen).toHaveBeenCalledWith(path.resolve("tareas.json"), "r");
         expect(mockReadLine).toHaveBeenCalled();
         const tareas = gestorTarea.getTareas();
+        expect(tareas).toBeInstanceOf(Array<Tarea>)
         expect(tareas.length).toBe(1);
         expect(tareas[0].getCategoria()).toBe(Categoria.TRABAJO);
     });
